@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.darrenfang</groupId>
     <artifactId>commons</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <url>https://github.com/darrenfang/commons</url>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>darrenfang-commons</name>
     <description>Common utils for Java.</description>
+    <url>https://github.com/darrenfang/commons</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -38,8 +37,19 @@
         <connection>scm:git:git@github.com:darrenfang/commons.git</connection>
         <developerConnection>scm:git:git@github.com:darrenfang/commons.git</developerConnection>
         <url>https://github.com/darrenfang/commons.git</url>
-    </scm>
+      <tag>commons-1.0.0</tag>
+  </scm>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
     <build>
         <finalName>${project.name}-${project.version}</finalName>
 
@@ -70,6 +80,36 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
