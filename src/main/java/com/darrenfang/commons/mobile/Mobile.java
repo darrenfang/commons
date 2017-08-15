@@ -27,17 +27,17 @@ public class Mobile {
      * 移动号码正则表达式
      */
     private static Pattern cmccPattern = Pattern
-            .compile("1(34[0-8][0-9]{7}|3[5-9][0-9]{8}|47[0-9]{8}|5[012789][0-9]{8}|70[356][0-9]{7}|78[0-9]{8}|8[23478][0-9]{8})");
+            .compile("^1(34[0-8][0-9]{7}|3[5-9][0-9]{8}|47[0-9]{8}|5[012789][0-9]{8}|70[356][0-9]{7}|78[0-9]{8}|8[23478][0-9]{8})$");
     /**
      * 联通号码正则表达式
      */
     private static Pattern unicomPattern = Pattern
-            .compile("1(3[0-2][0-9]{8}|45[0-9]{8}|5[56][0-9]{8}|70[4789][0-9]{7}|7[156][0-9]{8}|8[56][0-9]{8})");
+            .compile("^1(3[0-2][0-9]{8}|45[0-9]{8}|5[56][0-9]{8}|70[4789][0-9]{7}|7[156][0-9]{8}|8[56][0-9]{8})$");
     /**
      * 电信号码正则表达式
      */
     private static Pattern telecomPattern = Pattern
-            .compile("1(33[0-9]{8}|349[0-9]{7}|49[0-9]{8}|53[0-9]{8}|70[012][0-9]{7}|7[37][0-9]{8}|8[019][0-9]{8})");
+            .compile("^1(33[0-9]{8}|349[0-9]{7}|49[0-9]{8}|53[0-9]{8}|70[012][0-9]{7}|7[37][0-9]{8}|8[019][0-9]{8})$");
 
     /**
      * 判断手机号码格式是否正确
@@ -46,7 +46,10 @@ public class Mobile {
      * @return 如果格式正确返回 true, 否则返回 false
      */
     public static boolean isMobile(String mobile) {
-        return mobilePattern.matcher(mobile).matches();
+        if (StringUtils.isBlank(mobile) || mobile.length() != 11) {
+            return false;
+        }
+        return typeOf(mobile) != MobileType.UNKNOWN;
     }
 
     /**
@@ -56,7 +59,7 @@ public class Mobile {
      * @return 运营商类型
      */
     public static MobileType typeOf(String mobile) {
-        if (StringUtils.isBlank(mobile)) {
+        if (StringUtils.isBlank(mobile) || mobile.length() != 11) {
             return MobileType.UNKNOWN;
         }
 

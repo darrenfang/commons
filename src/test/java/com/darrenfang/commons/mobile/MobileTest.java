@@ -54,6 +54,8 @@ public class MobileTest {
         assertTrue(Mobile.isMobile("18700000000"));
         assertTrue(Mobile.isMobile("18800000000"));
         assertTrue(Mobile.isMobile("18900000000"));
+
+        assertFalse(Mobile.isMobile("189000000000"));
     }
 
     @Test
@@ -122,6 +124,8 @@ public class MobileTest {
         assertEquals(MobileType.CMCC, Mobile.typeOf("18700000000"));
         assertEquals(MobileType.CMCC, Mobile.typeOf("18800000000"));
         assertEquals(MobileType.TELECOM, Mobile.typeOf("18900000000"));
+
+        assertEquals(MobileType.UNKNOWN, Mobile.typeOf("189000000000"));
     }
 
     @Test
