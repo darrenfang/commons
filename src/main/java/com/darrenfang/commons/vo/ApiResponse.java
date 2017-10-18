@@ -22,10 +22,18 @@ public class ApiResponse {
     private String message = "";
 
     /**
-     * 创建默认的 API 响应, 业务代码为 200, 信息为空字符串
+     * 调用结果
      */
-    public ApiResponse() {
+    private Object result;
+
+    /**
+     * 创建默认的 API 响应, 业务代码为 200, 信息为空字符串
+     *
+     * @param result 调用结果
+     */
+    public ApiResponse(Object result) {
         this.timestamp = new Date().getTime();
+        this.result = result;
     }
 
     /**
@@ -33,11 +41,13 @@ public class ApiResponse {
      *
      * @param status  业务代码
      * @param message 信息
+     * @param result  调用结果
      */
-    public ApiResponse(int status, String message) {
+    public ApiResponse(int status, String message, Object result) {
         this.timestamp = new Date().getTime();
         this.status = status;
         this.message = message;
+        this.result = result;
     }
 
     /**
@@ -65,5 +75,14 @@ public class ApiResponse {
      */
     public String getMessage() {
         return message;
+    }
+
+    /**
+     * 获取调用结果
+     *
+     * @return
+     */
+    public Object getResult() {
+        return result;
     }
 }
