@@ -1,97 +1,62 @@
 package com.darrenfang.commons.exception;
 
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
-
 /**
  * 记录不存在异常
  */
-public class RecordNotFoundException extends IncorrectResultSizeDataAccessException {
+public class RecordNotFoundException extends BusinessException {
     /**
-     * Constructor for IncorrectResultSizeDataAccessException.
+     * Constructs a new runtime exception with {@code null} as its
+     * detail message.  The cause is not initialized, and may subsequently be
+     * initialized by a call to {@link #initCause}.
      */
     public RecordNotFoundException() {
-        super(1);
+        super("记录不存在。");
     }
 
     /**
-     * Constructor for IncorrectResultSizeDataAccessException.
+     * Constructs a new runtime exception with the specified detail message.
+     * The cause is not initialized, and may subsequently be initialized by a
+     * call to {@link #initCause}.
      *
-     * @param msg the detail message
+     * @param message the detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
      */
-    public RecordNotFoundException(String msg) {
-        super(msg, 1);
+    public RecordNotFoundException(String message) {
+        super(message);
     }
 
     /**
-     * Constructor for IncorrectResultSizeDataAccessException.
+     * Constructs a new runtime exception with the specified detail message and
+     * cause.  <p>Note that the detail message associated with
+     * {@code cause} is <i>not</i> automatically incorporated in
+     * this runtime exception's detail message.
      *
-     * @param msg the detail message
-     * @param ex  the wrapped exception
+     * @param message the detail message (which is saved for later retrieval
+     *                by the {@link #getMessage()} method).
+     * @param cause   the cause (which is saved for later retrieval by the
+     *                {@link #getCause()} method).  (A <tt>null</tt> value is
+     *                permitted, and indicates that the cause is nonexistent or
+     *                unknown.)
+     * @since 1.4
      */
-    public RecordNotFoundException(String msg, Throwable ex) {
-        super(msg, 1, ex);
+    public RecordNotFoundException(String message, Throwable cause) {
+        super(message, cause);
     }
 
     /**
-     * Constructor for IncorrectResultSizeDataAccessException.
+     * Constructs a new runtime exception with the specified cause and a
+     * detail message of <tt>(cause==null ? null : cause.toString())</tt>
+     * (which typically contains the class and detail message of
+     * <tt>cause</tt>).  This constructor is useful for runtime exceptions
+     * that are little more than wrappers for other throwables.
      *
-     * @param expectedSize the expected result size
+     * @param cause the cause (which is saved for later retrieval by the
+     *              {@link #getCause()} method).  (A <tt>null</tt> value is
+     *              permitted, and indicates that the cause is nonexistent or
+     *              unknown.)
+     * @since 1.4
      */
-    public RecordNotFoundException(int expectedSize) {
-        super(expectedSize);
-    }
-
-    /**
-     * Constructor for IncorrectResultSizeDataAccessException.
-     *
-     * @param expectedSize the expected result size
-     * @param actualSize   the actual result size (or -1 if unknown)
-     */
-    public RecordNotFoundException(int expectedSize, int actualSize) {
-        super(expectedSize, actualSize);
-    }
-
-    /**
-     * Constructor for IncorrectResultSizeDataAccessException.
-     *
-     * @param msg          the detail message
-     * @param expectedSize the expected result size
-     */
-    public RecordNotFoundException(String msg, int expectedSize) {
-        super(msg, expectedSize);
-    }
-
-    /**
-     * Constructor for IncorrectResultSizeDataAccessException.
-     *
-     * @param msg          the detail message
-     * @param expectedSize the expected result size
-     * @param ex           the wrapped exception
-     */
-    public RecordNotFoundException(String msg, int expectedSize, Throwable ex) {
-        super(msg, expectedSize, ex);
-    }
-
-    /**
-     * Constructor for IncorrectResultSizeDataAccessException.
-     *
-     * @param msg          the detail message
-     * @param expectedSize the expected result size
-     * @param actualSize   the actual result size (or -1 if unknown)
-     */
-    public RecordNotFoundException(String msg, int expectedSize, int actualSize) {
-        super(msg, expectedSize, actualSize);
-    }
-
-    /**
-     * Constructor for IncorrectResultSizeDataAccessException.
-     *
-     * @param msg          the detail message
-     * @param expectedSize the expected result size
-     * @param actualSize   the actual result size (or -1 if unknown)
-     * @param ex           the wrapped exception
-     */
-    public RecordNotFoundException(String msg, int expectedSize, int actualSize, Throwable ex) {
-        super(msg, expectedSize, actualSize, ex);
+    public RecordNotFoundException(Throwable cause) {
+        super("记录不存在。", cause);
     }
 }
