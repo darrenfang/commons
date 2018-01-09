@@ -1,10 +1,12 @@
 package com.darrenfang.commons.json;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -52,6 +54,20 @@ public class JsonUtil {
         try {
             return mapper.readValue(json, clazz);
         } catch (Exception e) {
+            throw new JsonParseException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 读取 Json 字符串
+     *
+     * @param json Json 字符串
+     * @return JsonNode 对象
+     */
+    public static JsonNode readTree(String json) {
+        try {
+            return mapper.readTree(json);
+        } catch (IOException e) {
             throw new JsonParseException(e.getMessage(), e);
         }
     }

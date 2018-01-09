@@ -1,6 +1,7 @@
 package com.darrenfang.commons.json;
 
 import com.darrenfang.commons.MockObject;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -27,6 +28,14 @@ public class JsonUtilTest {
         model = JsonUtil.toObject(json, MockObject.class);
         assertEquals(404, model.getCode());
         assertEquals("Page Not Found", model.getMessage());
+    }
+
+    @Test
+    public void testReadTree() {
+        String json = "{\"code\":404,\"message\":\"Page Not Found\"}";
+        JsonNode node = JsonUtil.readTree(json);
+        assertEquals(404, node.get("code").asInt());
+        assertEquals("Page Not Found", node.get("message").asText());
     }
 
 }
