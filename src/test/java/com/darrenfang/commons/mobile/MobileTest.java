@@ -2,8 +2,10 @@ package com.darrenfang.commons.mobile;
 
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.*;
 
 public class MobileTest {
@@ -146,5 +148,23 @@ public class MobileTest {
         assertEquals(2, mobiles.size());
         assertTrue(mobiles.contains("18666666666"));
         assertTrue(mobiles.contains("13333333333"));
+    }
+
+    @Test
+    public void testFilter() {
+        Set<String> mobiles = new HashSet<>();
+        mobiles.add("");
+        mobiles.add(" ");
+        mobiles.add("123");
+        mobiles.add("00000000000");
+        mobiles.add("186666666666");
+        mobiles.add("18666666666");
+        mobiles.add("13333333333");
+
+        Set<String> result = Mobile.filter(mobiles);
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        assertThat(result, hasItem("18666666666"));
+        assertThat(result, hasItem("13333333333"));
     }
 }

@@ -5,7 +5,7 @@
 
     <groupId>com.darrenfang</groupId>
     <artifactId>commons</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
     <name>darrenfang-commons</name>
     <description>Common utils for Java.</description>

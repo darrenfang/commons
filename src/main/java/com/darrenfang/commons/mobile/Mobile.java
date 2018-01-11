@@ -2,6 +2,7 @@ package com.darrenfang.commons.mobile;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -49,7 +50,7 @@ public class Mobile {
         if (StringUtils.isBlank(mobile) || mobile.length() != 11) {
             return false;
         }
-        return typeOf(mobile) != MobileType.UNKNOWN;
+        return mobilePattern.matcher(mobile).matches();
     }
 
     /**
@@ -97,6 +98,22 @@ public class Mobile {
             mobiles.add(matcher.group());
         }
         return mobiles;
+    }
+
+    /**
+     * 过滤手机号码
+     *
+     * @param mobiles 需要过滤的手机号码集合
+     * @return 手机号码集合
+     */
+    public static Set<String> filter(Collection<String> mobiles) {
+        Set<String> result = new HashSet<>();
+        for (String mobile : mobiles) {
+            if (isMobile(mobile)) {
+                result.add(mobile);
+            }
+        }
+        return result;
     }
 
 }
