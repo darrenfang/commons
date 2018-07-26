@@ -53,7 +53,7 @@ public class ApiResponse {
     /**
      * 获取时间戳
      *
-     * @return
+     * @return 时间戳
      */
     public long getTimestamp() {
         return timestamp;
@@ -80,7 +80,7 @@ public class ApiResponse {
     /**
      * 获取调用结果
      *
-     * @return
+     * @return 调用结果
      */
     public Object getResult() {
         return result;
