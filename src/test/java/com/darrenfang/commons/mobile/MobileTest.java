@@ -38,6 +38,9 @@ public class MobileTest {
         assertTrue(Mobile.isMobile("15800000000"));
         assertTrue(Mobile.isMobile("15900000000"));
 
+        assertTrue(Mobile.isMobile("16600000000"));
+        assertTrue(Mobile.isMobile("16700000000"));
+
         assertTrue(Mobile.isMobile("17000000000"));
         assertTrue(Mobile.isMobile("17100000000"));
         assertTrue(Mobile.isMobile("17300000000"));
@@ -56,6 +59,10 @@ public class MobileTest {
         assertTrue(Mobile.isMobile("18700000000"));
         assertTrue(Mobile.isMobile("18800000000"));
         assertTrue(Mobile.isMobile("18900000000"));
+
+        assertTrue(Mobile.isMobile("19100000000"));
+        assertTrue(Mobile.isMobile("19800000000"));
+        assertTrue(Mobile.isMobile("19900000000"));
 
         assertFalse(Mobile.isMobile("189000000000"));
     }
@@ -99,6 +106,9 @@ public class MobileTest {
         assertEquals(MobileType.CMCC, Mobile.typeOf("15800000000"));
         assertEquals(MobileType.CMCC, Mobile.typeOf("15900000000"));
 
+        assertEquals(MobileType.UNICOM, Mobile.typeOf("16600000000"));
+        assertEquals(MobileType.UNICOM, Mobile.typeOf("16700000000"));
+
         assertEquals(MobileType.TELECOM, Mobile.typeOf("17000000000"));
         assertEquals(MobileType.TELECOM, Mobile.typeOf("17010000000"));
         assertEquals(MobileType.TELECOM, Mobile.typeOf("17020000000"));
@@ -126,6 +136,10 @@ public class MobileTest {
         assertEquals(MobileType.CMCC, Mobile.typeOf("18700000000"));
         assertEquals(MobileType.CMCC, Mobile.typeOf("18800000000"));
         assertEquals(MobileType.TELECOM, Mobile.typeOf("18900000000"));
+
+        assertEquals(MobileType.TELECOM, Mobile.typeOf("19100000000"));
+        assertEquals(MobileType.CMCC, Mobile.typeOf("19800000000"));
+        assertEquals(MobileType.TELECOM, Mobile.typeOf("19900000000"));
 
         assertEquals(MobileType.UNKNOWN, Mobile.typeOf("189000000000"));
     }
